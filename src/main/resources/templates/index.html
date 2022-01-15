@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="/css/css_file.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+</head>
+<body>
+<label>
+    <img src="img/title.png" width="400px" style="margin-left: 500px; margin-top: 10px">
+</label>
+<div class="row" style="margin-left: 1000px;margin-top: -50px">
+    <select id="countries"></select>
+    <button id="chooseCountry">Submit</button>
+</div>
+<div class="container" id="global" style="margin-top: 20px">
+    <h1 align="center" id="country"></h1>
+    <div class="container" id="data">
+        <div class="card-deck mt-5">
+            <div class="row" id="todayCards">
+                <div class="card" id="casesToday"></div>
+                <div class="card" id="deathsToday"></div>
+                <div class="card" id="recoveredToday"></div>
+            </div>
+            <div class="row" id="totalCards">
+                <div class="card" id="casesTotal"></div>
+                <div class="card" id="deathsTotal"></div>
+                <div class="card" id="recoveredTotal"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="vaccineData">
+        <h3 align="center">Vaccine Data</h3>
+        <table class="table" id="vaccineTable" style="padding-bottom: 50px">
+            <thead>
+            <tr>
+                <th scope="col">Vaccine Doses Administrated</th>
+                <th scope="col">Fully Vaccinated</th>
+                <th scope="col"> % of population fully vaccinated</th>
+                <th scope="col">Partially Vaccinated</th>
+                <th scope="col">Vaccinated At Least One Dose</th>
+                <th scope="col">% of population vaccinated At Least One Dose</th>
+                <th scope="col">Booster Doses Administrated</th>
+                <th scope="col">Population</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="container" id="chartsContainer">
+        <div id="mainChart" style="width: 1000px; padding-bottom: 50px"></div>
+        <div class="row">
+            <div id="chart1" style="width:500px;padding-bottom: 50px;"></div>
+            <div id="chart2" style="width:500px;padding-bottom: 50px;"></div>
+        </div>
+        <div class="row">
+            <div id="chart3" style="width:500px; padding-bottom: 50px;"></div>
+            <div id="chart4" style="width:500px; padding-bottom: 50px;"></div>
+        </div>
+    </div>
+</div>
+<h1 align="center">Countries Situation</h1>
+<div class="container">
+    <div class="row">
+        <div class="column" style="padding: 50px;">
+            <!--h5>Countries With Most Confirmed Cases in Last 7 Days</h5-->
+            <table class="table" id="topLast7daysCases" style="width:200px; height: 500px">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Country</th>
+                    <th scope="col" bgcolor="#ff4646">Cases in last 7 days</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="column" style="padding: 50px;">
+            <!--h5>Countries With Most Confirmed Deaths in Last 7 Days</h5-->
+            <table class="table" id="topLast7daysDeaths" style="width:200px; height: 500px;">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Country</th>
+                    <th scope="col" bgcolor="#6c6c6c">Deaths in last 7 days</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="column" style="padding: 50px;">
+            <!--h5>Countries With Most Population Vaccinated</h5-->
+            <table class="table" id="topTotalVaccinated" style="width:200px;height: 500px">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Country</th>
+                    <th scope="col" bgcolor="#68a55a">Vaccinated At Least One Dose</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container" id="mainTable">
+    <div class="row" id="continentBtn">
+        <button type="submit" class="btn btn-primary mr-1" id="all">
+            All
+        </button>
+        <button type="submit" class="btn btn-primary mr-1" id="europe">
+            Europe
+        </button>
+        <button type="submit" class="btn btn-primary mr-1" id="asia">
+            Asia
+        </button>
+        <button type="submit" class="btn btn-primary mr-1" id="africa">
+            Africa
+        </button>
+        <button type="submit" class="btn btn-primary mr-1" id="australia">
+            Australia-Oceania
+        </button>
+        <button type="submit" class="btn btn-primary mr-1" id="northAmerica">
+            North America
+        </button>
+        <button type="submit" class="btn btn-primary mr-1" id="southAmerica">
+            South America
+        </button>
+    </div>
+    <div class="container">
+        <table class="table" id="countriesTable">
+            <thead>
+            <tr>
+                <th scope="col">Country</th>
+                <th scope="col">Continent</th>
+                <th scope="col">Cases(Total)</th>
+                <th scope="col">New Cases</th>
+                <th scope="col">Deaths(Total)</th>
+                <th scope="col">New Deaths</th>
+                <th scope="col">Recovered(Total)</th>
+                <th scope="col">New Recovered</th>
+                <th scope="col">Active cases</th>
+                <th scope="col">Vaccinated At Least One Dose</th>
+                <th scope="col">Booster Doses Administrated</th>
+                <th scope="col">Population</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/streamgraph.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/annotations.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script type="text/javascript" src="js/js_file.js"></script>
+</body>
+</html>

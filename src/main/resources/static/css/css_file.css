@@ -1,0 +1,61 @@
+body{
+    font-family: 'Bree Serif', serif;
+}
+
+
+#casesToday {
+    background: #ff4646;
+    text:black;
+}
+
+#casesTotal {
+    background: #ff4646;
+    text:black;
+}
+
+#deathsToday {
+    background: #6c6c6c;
+    text:white;
+}
+
+#deathsTotal {
+    background: #6c6c6c;
+    text:white;
+}
+
+#recoveredToday {
+    background: #68a55a;
+    text:black;
+}
+
+#recoveredTotal {
+    background: #68a55a;
+    text:black;
+}
+
+#todayCards {
+    padding-bottom: 50px;
+    padding-inline: 50px;
+}
+#totalCards {
+    padding-bottom: 50px;
+    padding-inline: 50px;
+}
+
+#continentBtn{
+    padding-top:20px;
+}
+
+#vaccineData{
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
