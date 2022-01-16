@@ -21,7 +21,7 @@ Main features:
 - the tables show: 1.the top ten countries by number of confirmed cases in the last 7 days; 2. the top ten countries by number of confirmed deaths in the last 7 days; 3. the top ten states with leading vaccination rates
 - a table displays data on all countries, sorted by total number of confirmed cases
 - the displayed countries can be sorted by continent (a set of seven buttons)
-- data is updated every 6 hours (from api's)
+- data is updated every 6 hours (from api)
 
 
 Application is built using the following technologies:
