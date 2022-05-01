@@ -26,7 +26,7 @@ Main features:
 
 Application is built using the following technologies:
 
-- Backend : Java 11, Spring Boot, Spring Rest, Spring Redis
+- Backend : Java 11, Spring Boot, Spring MVC, Spring Redis
 - Frontend: HTML, CSS, JavaScript, JQuery with the addition of Charts.js, Highcharts js
 - Build: Maven
 - Testing: Junit 5
